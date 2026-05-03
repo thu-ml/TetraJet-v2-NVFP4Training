@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+
+# Virtual environments and local config
+.env
+.env.*
+.venv/
+venv/
+.python-version
+.direnv/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Editors and OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Training outputs and logs
+outputs/
+logs/
+runs/
+wandb/
+scratch/
+olmo-output/
+slurm-*.out
+slurm-*.err
+*.log
+*.out
+*.err
+
+# Checkpoints and large generated artifacts
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+core
+
+*.so
+outputs
