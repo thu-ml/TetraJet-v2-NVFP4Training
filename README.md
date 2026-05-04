@@ -80,9 +80,9 @@ Possible Issues:
 
 ### Data Preparation
 
-The training configs expect OLMo2 preprocessed `.npy` data. You can use the file list in the official OLMo config [OLMo2-7B-stage1.yaml](https://github.com/allenai/OLMo/blob/main/configs/official-1124/OLMo2-7B-stage1.yaml) to download the preprocessed files directly.
+The training configs expect OLMo2 preprocessed `.npy` data. You can use the train and eval/perplexity file lists in the official OLMo config [OLMo2-7B-stage1.yaml](https://github.com/allenai/OLMo/blob/main/configs/official-1124/OLMo2-7B-stage1.yaml) to download the preprocessed files directly.
 
-After downloading, replace the data prefix in `olmo2-training/configs/*/*.yaml` with your local data directory.
+After downloading, replace both the training data prefix and the eval data paths in `olmo2-training/configs/*/*.yaml` with your local data directories.
 
 ### Training
 
