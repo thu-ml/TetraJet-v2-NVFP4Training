@@ -20,14 +20,13 @@ This repository contains the official implementation of **TetraJet-v2**, a metho
 
 ## Related Information
 
-- 📄 **Paper (TetraJet-v2)**: [![arXiv](https://img.shields.io/badge/arXiv-2510.27527-b31b1b.svg)](https://arxiv.org/abs/2510.27527)
-  [![OpenReview](https://img.shields.io/badge/OpenReview-ICML%202026-8c1b13.svg)](https://openreview.net/forum?id=7ZQhm5HnOA)
+- 📄 **Paper (TetraJet-v2)**: [arXiv](https://arxiv.org/abs/2510.27527), [OpenReview](https://openreview.net/forum?id=7ZQhm5HnOA)
 - 📢 **Status**:
     - 🎉 **(2026/05)** This work has been accepted as **a Spotlight paper in ICML 2026**.
     - 🚀 **(2026/05)** We released an updated version of **TetraJet-v2** with kernels and the training recipe.
     - 📝 **(2025/11)** We released the first version of **TetraJet-v2** on arXiv.
 
-- 🔗 **Previous work (TetraJet, ICML 2025)**: [![arXiv](https://img.shields.io/badge/arXiv-2502.20853-b31b1b.svg)](https://arxiv.org/abs/2502.20853) [![Code](https://img.shields.io/badge/GitHub-TetraJet--MXFP4Training-181717?logo=github)](https://github.com/thu-ml/TetraJet-MXFP4Training)
+- 🔗 **Previous work (TetraJet-MXFP4Training, ICML 2025)**: [arXiv](https://arxiv.org/abs/2502.20853), [code](https://github.com/thu-ml/TetraJet-MXFP4Training)
   
   🧩 This work (TetraJet-v2) extends our prior low-bit training efforts (TetraJet) from MXFP4 for ViTs to more accurate and robust **NVFP4 training** for LLMs.
 
