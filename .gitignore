@@ -33,6 +33,7 @@ pip-wheel-metadata/
 
 # Training outputs and logs
 outputs/
+results/
 logs/
 runs/
 wandb/

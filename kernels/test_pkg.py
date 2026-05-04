@@ -588,7 +588,7 @@ def print_probe_result(run_iter):
     print(f"total time for tested items: {tot_time}")
     return avg_fwd_times, avg_bwd_times
 
-def test_fp8_baseline_e2e(dim=4096, batch_size=4, probe_on=False):
+def test_fp8_baseline_e2e(dim=4096, batch_size=4, seq_len=1024, probe_on=False):
     print("-----------------------------------------")
     print("      Testing TE FP8 end to end          ")
     print("-----------------------------------------")
@@ -596,7 +596,6 @@ def test_fp8_baseline_e2e(dim=4096, batch_size=4, probe_on=False):
         print(f"too large! {dim}")
         return
     
-    seq_len = 1024
     hidden_size = dim
     intermediate_size = int(2 * hidden_size)
     num_heads = 32
@@ -674,7 +673,7 @@ def test_fp8_baseline_e2e(dim=4096, batch_size=4, probe_on=False):
         lf, lb = print_probe_result(run_iter)
         print(f"| {hidden_size} | {batch_size} | {ms:.5f} | {lf:.5f} | {lb:.5f} | {ms - lf - lb:.5f} | {tflops:.2f} |")
 
-def test_e2e(dim=4096, batch_size=4, probe_on=False):
+def test_e2e(dim=4096, batch_size=4, seq_len=1024, probe_on=False):
     print("-----------------------------------------")
     print("          Testing end to end             ")
     print("-----------------------------------------")
@@ -682,7 +681,6 @@ def test_e2e(dim=4096, batch_size=4, probe_on=False):
         print("too large")
         return
     
-    seq_len = 1024
     hidden_size = dim
     intermediate_size = int(2 * hidden_size)
     num_heads = 32
@@ -755,7 +753,7 @@ def test_e2e(dim=4096, batch_size=4, probe_on=False):
         print(f"| {hidden_size} | {batch_size} | {ms:.5f} | {lf:.5f} | {lb:.5f} | {ms - lf - lb:.5f} | {tflops:.2f} |")
 
 
-def test_e2e_mix(dim=4096, p=8, batch_size=4, probe_on=False):
+def test_e2e_mix(dim=4096, p=8, batch_size=4, seq_len=1024, probe_on=False):
     print("-----------------------------------------")
     print("   Testing end to end (mixed precision)    ")
     print("-----------------------------------------")
@@ -763,7 +761,6 @@ def test_e2e_mix(dim=4096, p=8, batch_size=4, probe_on=False):
         print("too large")
         return
     
-    seq_len = 1024
     hidden_size = dim
     intermediate_size = int(2 * hidden_size)
     num_heads = 32
@@ -853,6 +850,9 @@ if __name__ == "__main__":
     parser.add_argument("--bs", type=int,
                         default=4,
                         help="batch size")
+    parser.add_argument("--sl", "--seq_len", dest="seq_len", type=int,
+                        default=1024,
+                        help="sequence length")
     
     parser.add_argument("-t", "--timer", action="store_true", help="test time for each component")
 
@@ -890,10 +890,10 @@ if __name__ == "__main__":
             test_fp8_baseline_bwd(dim=i)
     elif args.test_name == "e2e":
         for i in args.dims:
-            test_e2e(dim=i, batch_size=args.bs, probe_on=args.timer)
+            test_e2e(dim=i, batch_size=args.bs, seq_len=args.seq_len, probe_on=args.timer)
     elif args.test_name == "base_e2e":
         for i in args.dims:
-            test_fp8_baseline_e2e(dim=i, batch_size=args.bs, probe_on=args.timer)
+            test_fp8_baseline_e2e(dim=i, batch_size=args.bs, seq_len=args.seq_len, probe_on=args.timer)
             
     elif args.test_name == "fwd_mix":
         for i in args.dims:
@@ -910,4 +910,4 @@ if __name__ == "__main__":
     elif args.test_name == "e2e_mix":
         for i in args.dims:
             for p in args.p_vals:
-                test_e2e_mix(dim=i, p=p, batch_size=args.bs, probe_on=args.timer)
+                test_e2e_mix(dim=i, p=p, batch_size=args.bs, seq_len=args.seq_len, probe_on=args.timer)
