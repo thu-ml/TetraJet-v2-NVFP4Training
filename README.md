@@ -20,15 +20,15 @@ This repository contains the official implementation of **TetraJet-v2**, a metho
 
 ## Related Information
 
-- 📄 **Paper (TetraJet-v2)**: [arXiv](https://arxiv.org/abs/2510.27527), [OpenReview](https://openreview.net/forum?id=7ZQhm5HnOA)
-- 📢 **Status**:
+- **Paper (TetraJet-v2)**: [arXiv](https://arxiv.org/abs/2510.27527), [OpenReview](https://openreview.net/forum?id=7ZQhm5HnOA)
+- **Status**:
     - 🎉 **(2026/05)** This work has been accepted as **a Spotlight paper in ICML 2026**.
-    - 🚀 **(2026/05)** We released an updated version of **TetraJet-v2** with kernels and the training recipe.
-    - 📝 **(2025/11)** We released the first version of **TetraJet-v2** on arXiv.
+    - **(2026/05)** We released an updated version of **TetraJet-v2** with kernels and the training recipe.
+    - **(2025/10)** We released the first version of **TetraJet-v2** on arXiv.
 
-- 🔗 **Previous work (TetraJet-MXFP4Training, ICML 2025)**: [arXiv](https://arxiv.org/abs/2502.20853), [code](https://github.com/thu-ml/TetraJet-MXFP4Training)
+- **Previous work (TetraJet-MXFP4Training, ICML 2025)**: [arXiv](https://arxiv.org/abs/2502.20853), [code](https://github.com/thu-ml/TetraJet-MXFP4Training)
   
-  🧩 This work (TetraJet-v2) extends our prior low-bit training efforts (TetraJet) from MXFP4 for ViTs to more accurate and robust **NVFP4 training** for LLMs.
+  This work (TetraJet-v2) extends our prior low-bit training efforts (TetraJet) from MXFP4 for ViTs to more accurate and robust **NVFP4 training** for LLMs.
 
 
 ## Core Contributions
@@ -129,7 +129,7 @@ If you find this work useful, please consider citing:
 ```bibtex
 @article{chen2025tetrajet,
   title={Tetrajet-v2: Accurate nvfp4 training for large language models with oscillation suppression and outlier control},
-  author={Chen, Yuxiang and Xu, Xiaoming and Zhang, Pengle and Beyer, Michael and Rapp, Martin and Zhu, Jun and Chen, Jianfei},
+  author={Chen, Yuxiang and Liu, Yifan and Xu, Xiaoming and Zhang, Pengle and Beyer, Michael and Rapp, Martin and Zhu, Jun and Chen, Jianfei},
   journal={arXiv preprint arXiv:2510.27527},
   year={2025}
 }
