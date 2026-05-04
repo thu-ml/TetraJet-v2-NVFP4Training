@@ -48,45 +48,6 @@ def _pick_track_indices_by_bin_center_distance(w: torch.Tensor, sample_percent: 
     return torch.topk(score, k=k, largest=True, sorted=False).indices.to(torch.long)
 
 
-def fp4_elements_centralize_BinEdge_memeff(model, centralize_thrd=0.495):
-    sum_weight_numel = 0
-    sum_osci_numel = 0
-
-    with torch.no_grad():
-        for _, module in model.named_modules():
-            if check_quant_linear(module):
-                if check_quant_mix_linear(module) and module.mix_channel_done:
-                    channel_idx = module.fp4_channel_idx
-                    w = module.weight.detach()[:, channel_idx]
-                else:
-                    channel_idx = None
-                    w = module.weight.detach()
-
-                w_q, w_os, w_is = tetrajetv2.quant_fp4(w, 0)
-                w_qdq = tetrajetv2.dequant_fp4(w_q, w_os, w_is)
-                w_scale_fp = tetrajetv2.quant_fp4_scale_only(w)
-
-                w_lat = w / w_scale_fp
-                w_fp4val = w_qdq / w_scale_fp
-                w_binwidth = _get_bin_width(w_fp4val)
-
-                reset_mask = (w_lat - w_fp4val).abs() > w_binwidth * centralize_thrd
-                sum_osci_numel += reset_mask.sum().item()
-                sum_weight_numel += reset_mask.numel()
-
-                w[reset_mask] = w_qdq[reset_mask]
-
-                if channel_idx is not None:
-                    module.weight.data.index_copy_(1, channel_idx.to(torch.long), w)
-                else:
-                    module.weight.copy_(w)
-
-    if sum_weight_numel != 0:
-        log.info(f"[BinEdge] selected {sum_osci_numel / sum_weight_numel * 100:.3f}% oscillating elements")
-    else:
-        log.info("[BinEdge] No QLinear elements")
-
-
 _last_linear_weights = {}
 _last_linear_weights_qdq = {}
 _distance_Wfp = {}

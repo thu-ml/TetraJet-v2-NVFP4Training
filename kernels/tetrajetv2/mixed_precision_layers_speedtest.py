@@ -27,6 +27,9 @@ class MixedLinear(nn.Module):
         torch.nn.init.normal_(w_full, mean=0.0, std=0.023)
         w_fp4 = w_full[:, :k_fp4].contiguous()
         w_fp8 = w_full[:, k_fp4:in_features].contiguous()
+        # Speedtest assumption: weights are pre-quantized offline after the
+        # optimizer step. The current OLMo training path quantizes weights
+        # online; TODO: add offline weight quantization there.
         self.w_q_fp4, self.w_os_fp4, self.w_is_fp4, w_t_fp4 = tetrajetv2.quant_fp4_dequant_trans_fused(w_fp4)
         self.w_q_fp8, self.w_s_fp8 = tetrajetv2.quant_fp8(w_fp8)
         

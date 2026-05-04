@@ -22,6 +22,9 @@ class FP4Linear(nn.Module):
         
         w = torch.empty(out_features, in_features, device='cuda')
         torch.nn.init.normal_(w, mean=0.0, std=0.023)
+        # Speedtest assumption: weights are pre-quantized offline after the
+        # optimizer step. The current OLMo training path quantizes weights
+        # online; TODO: add offline weight quantization there.
         self.w_q, self.w_os, self.w_is, self.w_t = tetrajetv2.quant_fp4_dequant_trans_fused(w)
     
     def forward(self, x):
