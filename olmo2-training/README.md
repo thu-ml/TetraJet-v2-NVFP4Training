@@ -35,3 +35,10 @@ Each model size includes:
 Within each model size, these configs share the same model, data, optimizer, LR schedule, and batch settings. They differ only in `quant_nvfp4`.
 
 The train and eval/perplexity data paths come from the official OLMo2 config [OLMo2-7B-stage1.yaml](https://github.com/allenai/OLMo/blob/main/configs/official-1124/OLMo2-7B-stage1.yaml). After downloading the preprocessed files, replace both the training data prefix and the eval data paths in these YAML files with your local directories.
+
+## License
+
+This directory is based on [allenai/OLMo](https://github.com/allenai/OLMo)
+and is distributed under the Apache License 2.0. See [LICENSE](LICENSE) and
+the repository-level [NOTICE](../NOTICE) for upstream attribution and a summary
+of the TetraJet-v2 modifications.

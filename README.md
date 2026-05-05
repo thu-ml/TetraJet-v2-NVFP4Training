@@ -122,6 +122,15 @@ Outputs are saved to `olmo2-training/outputs/<model_size>/<config_name>`. W&B ru
 ### Benchmarking Kernels
 > See `kernels/README.md`.
 
+## License
+
+This repository is released under the [Apache License 2.0](LICENSE).
+
+The `olmo2-training/` directory contains code adapted from
+[allenai/OLMo](https://github.com/allenai/OLMo), which is also licensed under
+Apache License 2.0. We retain the upstream license notice and document the
+TetraJet-v2 modifications in [NOTICE](NOTICE).
+
 ## Citation
 
 If you find this work useful, please consider citing:

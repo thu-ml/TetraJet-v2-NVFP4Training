@@ -142,6 +142,7 @@ class NVFP4_mix_MXFP8_TetraJetv2_MatMulFunc_BwdAllRHT16SQ_Padding128(Function):
         x_fp4 = x[:, fp4_channel_idx].contiguous()
         w_fp8 = w[:, fp8_channel_idx].contiguous()
         w_fp4 = w[:, fp4_channel_idx].contiguous()
+        # TODO: fuse indexing into kernels
         
         out_features = w.shape[0]
         seed_dw = int(torch.randint(0, 2**32, size=(), dtype=torch.uint32).item())
